@@ -1,0 +1,30 @@
+// problem link: https://leetcode.com/problems/letter-combinations-of-a-phone-number/
+
+class Solution {
+public:
+    vector<string> letterCombinations(string digits) {
+        
+        unordered_map<int, string> map = 
+        {
+            {0, ""}, {1, ""}, 
+            {2, "abc"}, {3, "def"}, {4, "ghi"},
+            {5, "jkl"}, {6, "mno"}, {7, "pqrs"},
+            {8, "tuv"}, {9,"wxyz"}
+        };
+        
+        int len = digits.size();
+        vector<string> ans = {""};
+        
+        for(int i = 0; i < len; i++) {
+            vector<string> temp;
+            for(auto str: map[digits[i] - '0']) {
+                for(auto charGroup: ans) {
+                    temp.push_back(charGroup + str);
+                }
+            }
+            ans = temp;
+        }
+        
+        return ans;
+    }
+};
