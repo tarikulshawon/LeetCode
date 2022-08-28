@@ -1,0 +1,24 @@
+// https://leetcode.com/problems/group-anagrams/
+
+class Solution {
+public:
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+        vector<vector<string>> ans;
+        unordered_map<string, vector<string>> umap;
+        
+        int len = strs.size();
+        for(auto str: strs) {
+            string sortedString = str;
+            
+            sort(sortedString.begin(), sortedString.end());
+            
+            umap[sortedString].push_back(str);
+        }
+        
+        for(auto it: umap) {
+            ans.push_back(it.second);
+        }
+        
+        return ans;
+    }
+};
